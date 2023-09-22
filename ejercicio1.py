@@ -1,34 +1,98 @@
-""" Ejercicio práctico1 (3Puntos): Creación de una clase en Python que representa una matriz.
-Para este ejercicio, deberás crear una clase que representa una matriz. Las operaciones que esta clase debe permitir son la creación de una matriz a partir de una lista de listas, la impresión de la matriz en una forma legible, y el cálculo de la transpuesta de la matriz. Asegúrate de que cada método tenga una única responsabilidad.
+def print_matrix(matrix : List[List[int]]) -> None:
+    """Prints out the matrix."""
+    # check if the matrix is empty
+    if len(matrix) == 0:
+        # print out an empty matrix
+        print("[]")
+        # return
+        return
+    # create a list of strings
+    strings : List[str] = []
+    # loop through the rows
+    for row in matrix:
+        # create an empty string
+        string = ""
+        # loop through the columns
+        for val in row:
+            # add the value to the string
+            string += str(val) + " "
+        # add the string to the list of strings
+        strings.append(string)
+    # print out the list of strings
+    print(strings)
 
-class Matriz:
-    def __init__(self, elementos):
-        self.elementos = elementos
+# define a function that takes a list of lists
+# and returns the transpose
+def transpose(matrix : List[List[int]]) -> List[List[int]]:
+    """Returns the transpose of the matrix."""
+    # check if the matrix is empty
+    if len(matrix) == 0:
+        # return an empty matrix
+        return []
+    # create a new empty list
+    new_matrix : List[List[int]] = []
+    # loop through the rows
+    for i in range(len(matrix[0])):
+        # add the new row to the new matrix
+        new_matrix.append(row_to_column(matrix, i))
+    # return the new matrix
+    return new_matrix
 
-    def imprimir(self):
-        for fila in self.elementos:
-            print(fila)
+# define a function that takes a list of lists
+# and returns the transpose
+def row_to_column(matrix : List[List[int]], column : int) -> List[int]:
+    """Returns the column of the matrix."""
+    # create a new empty list
+    new_row : List[int] = []
+    # loop through the columns
+    for row in matrix:
+        # check if the row is long enough
+        if len(row) <= column:
+            # raise an error
+            raise ValueError("Invalid matrix")
+        # get the value at the current position
+        val = row[column]
+        # add it to the new row
+        new_row.append(val)
+    # return the new row
+    return new_row
 
-    def transpuesta(self):
-        return Matriz([[fila[i] for fila in self.elementos] for i in range(len(self.elementos[0]))])
-Este código define una clase Matriz con tres métodos. El método __init__ crea una nueva matriz a partir de una lista de listas. El método imprimir imprime la matriz en una forma legible. El método transpuesta crea una nueva matriz que es la transpuesta de la matriz original.
-Un buen ejemplo para este ejercicio podría ser la creación de una matriz 2x2, su impresión y la impresión de su transpuesta. Aquí tienes un ejemplo de cómo usar la clase Matriz para hacer esto:
+# define a function that takes a list of lists
+# and returns the transpose
+def transpose(matrix : List[List[int]]) -> List[List[int]]:
+    # check if the matrix is empty
+    if len(matrix) == 0:
+        # return an empty matrix
+        return []
+    # create a new empty list
+    new_matrix : List[List[int]] = []
+    # loop through the rows
+    for i in range(len(matrix[0])):
+        # add the new row to the new matrix
+        new_matrix.append(row_to_column(matrix, i))
+    # return the new matrix
+    return new_matrix
 
-m = Matriz([[1, 2], [3, 4]])
-m.imprimir()
-print()
-m_transpuesta = m.transpuesta()
-m_transpuesta.imprimir()
-Esto debería dar como resultado:
-
-[1, 2]
-[3, 4]
-
-[1, 3]
-[2, 4]
-Se debe evaluar la implementación correcta de la responsabilidad única (cada método hace una sola cosa), la claridad del código y la correcta utilización de las características de Python.
-Criterio de evaluación:
-•	Claridad y limpieza del código (30%)
-•	Implementación correcta de la responsabilidad única (40%)
-•	Uso correcto de las características de Python (30%) """
-
+# define a function that takes a list of lists
+# and returns the transpose
+def row_to_column(matrix : List[List[int]], column : int) -> List[int]:
+    # create a new empty list
+    new_row : List[int] = []
+    # loop through the columns
+    for row in matrix:
+        # check if the row is long enough
+        if len(row) <= column:
+            # raise an error
+            raise ValueError("Invalid matrix")
+        # get the value at the current position
+        val = row[column]
+        # add it to the new row
+        new_row.append(val)
+    # return the new row
+    return new_row
+# create a matrix
+matrix : List[List[int]] = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+# print it out
+print_matrix(matrix)
+# print out the transpose
+print_matrix(transpose(matrix))
